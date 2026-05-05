@@ -1,5 +1,5 @@
 <!doctype html>
-{% load static %}
+{% load static i18n %}
 <html lang="en">
   <head>
     <title>Bootstrap 5 Example</title>
@@ -11,7 +11,21 @@
   <body>
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid">
-        <a href="/" class="navbar-brand">Navbar</a>
+        <a href="/" class="navbar-brand">
+            {% trans 'Home' %}
+        </a>
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            <select name="language" id="language">
+                {% for language in languages %}
+                    <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>{{ language.name_local }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Go</button>
+        </form>
         <form class="d-flex" role="search">
           <input
             class="form-control me-2"
