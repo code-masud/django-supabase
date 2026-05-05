@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.config.BlogConfig',
+    'blog.apps.BlogConfig',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,8 @@ STATIC_ROOT = os.getenv('STATIC_ROOT')
 
 MEDIA_URL = os.getenv('MEDIA_URL')
 MEDIA_ROOT = os.getenv('MEDIA_ROOT')
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
