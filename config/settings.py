@@ -137,3 +137,18 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# File upload settings
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 1000  # Max form fields
+DATA_UPLOAD_MAX_NUMBER_FILES = 100    # Max files per request
+DATA_UPLOAD_MAX_FILE_SIZE = 5242880   # 5MB in bytes (Django 4.0+)
+
+# Custom upload handlers (optional)
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440  # 2.5MB - files larger go to temp
+FILE_UPLOAD_PERMISSIONS = 0o644       # File permissions
+FILE_UPLOAD_TEMP_DIR = None            # Temp directory (None = system temp)
